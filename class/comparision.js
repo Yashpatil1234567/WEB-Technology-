@@ -1,10 +1,13 @@
-/*console.log(2>1)
+//comparision activity
+// activitiy all related to function defination , declaration ....
+
+console.log(2>1)
 console.log(2>=1)
 console.log(2<1)
 console.log(2<=1)
 console.log(2==1)
 console.log(2!=1)
-*/
+
 
 console.log("2">1)
 console.log("02">1)
