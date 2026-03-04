@@ -25,3 +25,11 @@
 // Node.js is a framework in a java script  using which we can  
 // run JavaScript code  outside the browser.
 
+
+//DOM-DOCUMENT OBJECT MODEL
+// it is a programming interface for html 
+//DOM is a bridge between html and java script
+
+
+// we learn core javascript .  js can not change away pages 
+//js uses dom to read , load it 

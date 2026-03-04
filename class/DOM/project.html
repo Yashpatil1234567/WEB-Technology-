@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calorie Calculator</title>
+
+    <style>
+        body{
+            font-family: Arial;
+            background:#fff4e6;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            height:100vh;
+        }
+
+        .box{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            text-align:center;
+            width:300px;
+            box-shadow:0 0 10px rgba(0,0,0,0.2);
+        }
+
+        input{
+            width:90%;
+            padding:8px;
+            margin:8px 0;
+        }
+
+        button{
+            padding:8px 15px;
+            background:orange;
+            color:white;
+            border:none;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        #result{
+            margin-top:15px;
+            font-weight:bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box">
+    <h2>Daily Calorie Calculator 🔥</h2>
+
+    <input type="number" id="weight" placeholder="Weight (kg)">
+    <input type="number" id="height" placeholder="Height (cm)">
+    <input type="number" id="age" placeholder="Age">
+
+    <button onclick="calculate()">Calculate</button>
+
+    <h3 id="result"></h3>
+</div>
+
+<script>
+function calculate(){
+    let w = document.getElementById("weight").value;
+    let h = document.getElementById("height").value;
+    let a = document.getElementById("age").value;
+
+    let calories = (10*w) + (6.25*h) - (5*a) + 5;
+    calories = calories.toFixed(0);
+
+    document.getElementById("result").innerText =
+        "Your daily calories need: " + calories + " kcal";
+}
+</script>
+
+</body>
+</html>
