@@ -40,3 +40,4 @@ afun();
 
 
 
+// stack is used for primitive datatypes and queue is used for non primitive datatypes .

@@ -1,0 +1,19 @@
+Express is a minimal and flexibal application framework for node js .
+    -> it simplifies developement of server and and api 
+
+why we use Express ?
+    ->it is a minimalist, flexible framework that simplifies and speeds up the process of building server-side applications and APIs.
+
+imp->5,6,7 
+
+(npm init -y)=to simplifie the steps 
+
+* features of Express *
+routing , middleware support, request and response handling , rest api creation 
+template rendering 
+
+# NPM - node package manager
+all the dependencies and packages are installed by npm.
+
+
+Components of routing : URL path , handler functions , http methods .
