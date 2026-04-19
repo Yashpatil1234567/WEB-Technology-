@@ -9,12 +9,19 @@ app.get('/', (req, res) => {
 
 app.get('/users/:id', (req, res) => {
     const users = [
-        { id: 1, name: 'ganesh', age: 25 },
-        { id: 2, name: 'ganeshmali', age: 30 },
-        { id: 3, name: 'Charlie', age: 35 }
+        { id: 1, name: 'Yash', age: 21 },
+        { id: 2, name: 'ganesh', age: 30 },
+        { id: 3, name: 'pradip', age: 35 }
     ];
-    res.json(users[res.req.params.id - 1]);
-     
+
+    const id = parseInt(req.params.id, 10);
+    const user = users.find(u => u.id === id);
+
+    if (!user) {
+        return res.status(404).json({ error: 'User not found' });
+    }
+
+    res.json(user);
 });
 
 

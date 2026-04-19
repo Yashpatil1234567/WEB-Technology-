@@ -70,6 +70,15 @@ myfun(4,5,6);
 
 
 
+// normal function = uses constructor,need return keyword
+ function adds(a,b){
+     return a+b;
+ }
+ adds(2,3);
+
+// arrow function = syntax is very small in this we can not use constructor. implicitly uses this keyword 
+const add1 = (a, b) => a + b;
+
 
 
 

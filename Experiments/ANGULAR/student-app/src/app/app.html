@@ -1,0 +1,17 @@
+<div class="app-shell">
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">Student App</p>
+      <h1>{{ title }}</h1>
+      <p class="subtitle">Add, view, and manage students in a simple Angular app.</p>
+    </div>
+    <nav class="app-nav">
+      <a routerLink="/" class="nav-link">Student List</a>
+      <a routerLink="/add" class="nav-link">Add Student</a>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

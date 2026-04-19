@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Date Time Output</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f8;
+      color: #1f2937;
+      margin: 0;
+      padding: 32px;
+      font-size: 36px;
+      line-height: 1.4;
+    }
+    .output-line {
+      margin-bottom: 20px;
+      padding: 18px 20px;
+      background: #ffffff;
+      border-radius: 18px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+    .output-title {
+      font-size: 48px;
+      margin-bottom: 18px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div class="output-title"> Date/Time </div>
+  <div id="output"></div>
+  <script>
+    const myDate = new Date();
+    const myTimestamp = Date.now();
+    const lines = [
+      `Full date string: ${myDate.toString()}`,
+      `ISO string: ${myDate.toISOString()}`,
+      `Locale date: ${myDate.toLocaleDateString()}`,
+      `Date only: ${myDate.toDateString()}`,
+      `Type: ${typeof myDate}`,
+      `Timestamp (ms): ${myTimestamp}`,
+      `Timestamp (s): ${Math.floor(myTimestamp / 1000)}`,
+      `Day of month: ${myDate.getDate()}`,
+      `Day of week: ${myDate.getDay()}`,
+      `Year: ${myDate.getFullYear()}`,
+      `Month index (0 = Jan): ${myDate.getMonth()}`
+    ];
+
+    const container = document.getElementById('output');
+    container.innerHTML = lines.map(text => `<div class="output-line">${text}</div>`).join('');
+  </script>
+</body>
+</html>

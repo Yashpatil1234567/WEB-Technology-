@@ -16,4 +16,4 @@ console.log(Math.ceil(4.6));//choose top value
 console.log(Math.floor(4.6)); // choose last value
 
 
-// activity 1 ; how use math.random with examples
+

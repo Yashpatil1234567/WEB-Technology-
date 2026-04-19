@@ -1,0 +1,69 @@
+.add-student {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.form-card {
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.24);
+  border-radius: 1.25rem;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+  padding: 1.75rem;
+}
+
+.form-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.8rem;
+}
+
+.student-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.student-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: #334155;
+}
+
+.student-form input {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.85rem 1rem;
+  border-radius: 0.85rem;
+  border: 1px solid rgba(148, 163, 184, 0.32);
+  background: #f8fafc;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+.student-form input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
+}
+
+.student-form button {
+  width: max-content;
+  padding: 0.95rem 1.5rem;
+  border: none;
+  border-radius: 9999px;
+  background: #2563eb;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.student-form button:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+.student-form button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}

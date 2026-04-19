@@ -1,24 +1,23 @@
+const studentName = "Yash Patil";
+const rollNo = 109;
+const studentMarks = 90;
 
-//  Even / Odd
-let num =40;
-    if (num % 2 == 0)
-        console.log(num + " is Even");
-    else
-        console.log(num + " is Odd");
+const detailsDiv = document.getElementById("student-details");
+if (detailsDiv) {
+    detailsDiv.innerHTML = `
+        <p>Name: ${studentName}</p>
+        <p>Roll No: ${rollNo}</p>
+        <p>Marks: ${studentMarks}</p>
+    `;
+}
 
+const num = 40;
+console.log(`${num} is ${num % 2 === 0 ? "Even" : "Odd"}`);
 
+const resultMarks = 45;
+console.log(`Result: ${resultMarks >= 40 ? "Pass" : "Fail"}`);
 
-    //  Pass or Fail
-    let marks = 45;
-    if (marks >= 40)
-        console.log("Result: Pass");
-    else
-        console.log("Result: Fail");
-
-
-    
-    //  Print numbers using loop
-    console.log("Numbers from 1 to 10:");
-    for (let i = 1; i <= 10; i++) {
-        console.log(i);
-    }
+console.log("Numbers from 1 to 10:");
+for (let i = 1; i <= 10; i++) {
+    console.log(i);
+}

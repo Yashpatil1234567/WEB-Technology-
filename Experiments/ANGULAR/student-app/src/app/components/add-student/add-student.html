@@ -1,0 +1,19 @@
+<section class="add-student">
+  <div class="form-card">
+    <h2>Add Student</h2>
+
+    <form class="student-form" (ngSubmit)="addStudent()">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" type="text" [(ngModel)]="name" name="name" required />
+      </div>
+
+      <div>
+        <label for="age">Age</label>
+        <input id="age" type="number" [(ngModel)]="age" name="age" required />
+      </div>
+
+      <button type="submit" [disabled]="!name || !age">Add Student</button>
+    </form>
+  </div>
+</section>
