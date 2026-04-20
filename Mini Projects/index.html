@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diet Tracker</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: white;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.5em;
+        }
+        .form {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .form h3 {
+            margin-top: 0;
+            color: #4CAF50;
+            font-size: 1.5em;
+        }
+        input {
+            padding: 12px;
+            margin: 8px 0;
+            width: calc(100% - 24px);
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        input:focus {
+            outline: none;
+            border-color: #4CAF50;
+            box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
+        }
+        button {
+            padding: 12px 20px;
+            margin: 10px 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        #submitBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #submitBtn:hover {
+            background-color: #45a049;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        #cancelBtn {
+            background-color: #f44336;
+            color: white;
+        }
+        #cancelBtn:hover {
+            background-color: #da190b;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .list {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .list h3 {
+            margin-top: 0;
+            color: #4CAF50;
+            font-size: 1.5em;
+        }
+        .item {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 8px;
+            background: #f9f9f9;
+            transition: all 0.3s;
+        }
+        .item:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        .item strong {
+            color: #333;
+            font-size: 1.1em;
+        }
+        .item-actions {
+            margin-top: 10px;
+        }
+        .item-actions button {
+            padding: 8px 15px;
+            margin: 0 5px;
+            font-size: 14px;
+            border-radius: 4px;
+        }
+        .delete-btn {
+            background-color: #f44336 !important;
+        }
+        .delete-btn:hover {
+            background-color: #da190b !important;
+        }
+        .edit-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+        .edit-btn:hover {
+            background-color: #0b7dda;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            h1 {
+                font-size: 2em;
+            }
+            .form, .list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Diet Tracker</h1>
+    
+    <div class="form">
+        <h3 id="formTitle">Add Food</h3>
+        <input type="hidden" id="foodId">
+        <input type="text" id="foodName" placeholder="Food Name">
+        <input type="number" id="calories" placeholder="Calories">
+        <input type="date" id="date">
+        <button id="submitBtn" onclick="addOrUpdateFood()">Add</button>
+        <button id="cancelBtn" onclick="cancelEdit()" style="display:none;">Cancel</button>
+    </div>
+
+    <div class="list">
+        <h3>Entries</h3>
+        <div id="foodList"></div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:3000/diet';
+
+        function loadFood() {
+            fetch(API_URL)
+                .then(res => res.json())
+                .then(data => {
+                    let html = '';
+                    data.forEach(item => {
+                        html += `<div class="item">
+                            <strong>${item.food_name}</strong> - ${item.calories} cal (${item.date})
+                            <div class="item-actions">
+                                <button class="edit-btn" onclick="editFood(${item.id}, '${item.food_name}', ${item.calories}, '${item.date}')">Edit</button>
+                                <button class="delete-btn" onclick="deleteFood(${item.id})">Delete</button>
+                            </div>
+                        </div>`;
+                    });
+                    document.getElementById('foodList').innerHTML = html || '<p>No entries</p>';
+                })
+                .catch(err => console.log('Error:', err));
+        }
+
+        function addOrUpdateFood() {
+            const id = document.getElementById('foodId').value;
+            const foodName = document.getElementById('foodName').value;
+            const calories = document.getElementById('calories').value;
+            const date = document.getElementById('date').value;
+
+            if (!foodName || !calories || !date) {
+                alert('Fill all fields');
+                return;
+            }
+
+            if (id) {
+                // Update
+                fetch(`${API_URL}/update/${id}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ food_name: foodName, calories, date })
+                })
+                .then(() => {
+                    cancelEdit();
+                    loadFood();
+                })
+                .catch(err => console.log('Error:', err));
+            } else {
+                // Add
+                fetch(`${API_URL}/add`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ food_name: foodName, calories, date })
+                })
+                .then(() => {
+                    document.getElementById('foodName').value = '';
+                    document.getElementById('calories').value = '';
+                    document.getElementById('date').value = '';
+                    loadFood();
+                })
+                .catch(err => console.log('Error:', err));
+            }
+        }
+
+        function editFood(id, name, cal, dt) {
+            document.getElementById('foodId').value = id;
+            document.getElementById('foodName').value = name;
+            document.getElementById('calories').value = cal;
+            document.getElementById('date').value = dt;
+            document.getElementById('formTitle').textContent = 'Edit Food';
+            document.getElementById('submitBtn').textContent = 'Update';
+            document.getElementById('cancelBtn').style.display = 'inline';
+        }
+
+        function cancelEdit() {
+            document.getElementById('foodId').value = '';
+            document.getElementById('foodName').value = '';
+            document.getElementById('calories').value = '';
+            document.getElementById('date').value = '';
+            document.getElementById('formTitle').textContent = 'Add Food';
+            document.getElementById('submitBtn').textContent = 'Add';
+            document.getElementById('cancelBtn').style.display = 'none';
+        }
+
+        function deleteFood(id) {
+            if (confirm('Delete this entry?')) {
+                fetch(`${API_URL}/delete/${id}`, { method: 'DELETE' })
+                    .then(() => loadFood())
+                    .catch(err => console.log('Error:', err));
+            }
+        }
+
+        loadFood();
+    </script>
+</body>
+</html>

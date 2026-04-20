@@ -1,0 +1,25 @@
+                                         React
+----------------------------------------------------------------------------------------------
+React is a js  library .
+used to build the interfaces it helps to create resuable componenets .
+jsx - javascript + XML . it allows  writing html inside javascript 
+
+ex . const element<h1>hello world </h1>
+
+functional components 
+
+1)simple javascript function that return jsx
+
+function welcome(){
+    <h1>hello</h1>
+}
+
+
+activity :
+
+1) what is react and why we use 
+2) market hype ?
+3) what is jsx ?
+4) what is functional componenets in react 
+5) what is crops ?
+
