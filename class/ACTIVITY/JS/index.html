@@ -1,0 +1,89 @@
+// DOM activity : Create a webpage with multiple images.
+// When an image is clicked, it should be removed from the page.
+// Use JavaScript or jQuery to achieve this functionality.
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Remove</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb" class="img" width="200">
+    <img src="https://images.unsplash.com/photo-1519125323398-675f0ddb6308" class="img" width="200">
+    
+
+    <script>
+        $(document).ready(function () {
+            $(".img").click(function () {
+                $(this).hide();
+            });
+        });
+    </script>
+
+</body>
+</html>
+
+
+// NUMBER GAME  :
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>Guess the Number (1 to 10)</h2>
+<input type="number" id="guess">
+<button onclick="check()">Check</button>
+
+<p id="result"></p>
+
+<script>
+    let number = Math.floor(Math.random() * 10) + 1;
+
+    function check() {
+        let user = document.getElementById("guess").value;
+
+        if (user == number) {
+            document.getElementById("result").innerText = "Correct!";
+        } else {
+            document.getElementById("result").innerText = "Try Again!";
+        }
+    }
+</script>
+
+</body>
+</html>
+
+
+// 3.	fetch user display names in html list
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h3>User Names</h3>
+<ul id="users"></ul>
+
+<script>
+async function getUsers() {
+    let response = await fetch("https://jsonplaceholder.typicode.com/users");
+    let data = await response.json();
+
+    let list = document.getElementById("users");
+
+    data.forEach(user => {
+        let li = document.createElement("li");
+        li.textContent = user.name;
+        list.appendChild(li);
+    });
+}
+
+getUsers();
+</script>
+
+</body>
+</html>

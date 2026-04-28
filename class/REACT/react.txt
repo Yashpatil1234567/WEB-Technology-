@@ -1,0 +1,45 @@
+REACT - react is javascript library developed by Meta . to build fast and interactive interfaces .
+it is a SPA - single page application used to reduce loading .
+activity :
+
+(1) difference between REACT and angular . 
+(2) why do we use react ?
+- problem with js full page reload and complex dom manipulation , hard to manage larger applications .
+it updates only reqiured part , uses reusable component .
+
+
+
+#SPA : ex instagam , facebook ...
+page does not reload just only content change .
+
+#virtual DOM : react creates a copy of real DOM ...
+when data changes react updates virtual DOM ..
+updates only changed part . = result is high performance(fast data loading )..
+
+tool reqiured : vs code , npm 
+------------------------------------------------------------------------
+vite - it is a fast build tool
+npm install - install dependencies 
+npm run dev - to run the file
+
+----------------------------------------------------------
+ --important file --
+main.jsx - entry file of react application
+app.jsx - root component/reusable UI part 
+
+jsx - javascript + HTML 
+it allows us to write html code in js code 
+
+const element = <h1> welcome </h1>
+
+
+rules : 1) must return single parents 
+2) use {} scope brackets for javascript
+
+component : it is a heart of REACT . 
+1- functional componenet 
+2-class component 
+
+a function cannot return after one return ..
+
+* props : data passing from parents to child .
