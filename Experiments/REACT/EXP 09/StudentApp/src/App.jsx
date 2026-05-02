@@ -1,24 +1,18 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
-import './App.css'
-import Student from './Student'
+import StudentList from "./StudentList";
+
 function App() {
-  const students=[
-    {name:"yash", age:21},
-    {name:"pratik",age:22},
-    {name:"satyarth",age:20}
-  ]
- 
+  const students = [
+    { id: 1, name: "yash", marks: 85 },
+    { id: 2, name: "pratik", marks: 90 },
+    { id: 3, name: "satyarth", marks: 78 }
+  ];
+
   return (
     <>
-      <h1>Student list</h1>
-      {students.map((student, index) => (
-        <Student key={index} name={student.name} age={student.age} />
-      ))}
+      <h1>Student List</h1>
+      <StudentList students={students} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
